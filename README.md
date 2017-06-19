@@ -32,6 +32,7 @@ console.log(encode);
 ```
 
 **c6** - represents an array with a 6 byte buffer to follow (0xc6 - 0xc0)
+
 **85** - represents a string or number with the size of 5 (0x85 - 0x80)
 
 ### DECODE
