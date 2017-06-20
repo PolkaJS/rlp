@@ -10,9 +10,9 @@
     "prepublish": "yarn run build",
     "test": "echo running server tests... && tape test/**/*.js && echo 'successfully completed tests'"
   },
-  "repository" : {
-    "type" : "git",
-    "url" : "https://github.com/zion-coin/rlp-zion-coin.git"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zion-coin/rlp-zion-coin.git"
   },
   "author": "Craig OConnor",
   "license": "ISC",
@@ -22,6 +22,12 @@
     "babel-preset-flow": "^6.23.0",
     "eslint": "^3.19.0",
     "flow-bin": "^0.48.0",
+    "random-words": "0.0.1",
+    "rlp": "^2.0.0",
+    "sha3": "^1.2.0",
     "tape": "^4.6.3"
+  },
+  "dependencies": {
+    "readuint64be": "^1.0.5"
   }
 }

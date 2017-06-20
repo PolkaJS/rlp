@@ -1,7 +1,9 @@
 // @flow
-function encode(input: Array | string | number | null): Buffer {
+
+function encode(input: Array<any> | string | number | null): Buffer {
   if (!input)
     return Buffer.from([0x80]);
+
 
   if (Array.isArray(input)) {
     let output = Buffer.concat( input.map(encode) );
@@ -12,19 +14,21 @@ function encode(input: Array | string | number | null): Buffer {
         output
       ]);
 
-    let payloadLength = Buffer.from((output.length).toString(16), 'hex');
-    let payloadDef    = Buffer.from((247 + payloadLength.length).toString(16), 'hex');
+    let outputLength  = (output.length).toString(16);
+    if (outputLength.length % 2)
+      outputLength = '0' + outputLength;
+    let payloadLength = Buffer.from(outputLength, 'hex');
+    let payloadDef    = Buffer.from((247 + (payloadLength.length)).toString(16), 'hex');
 
     return Buffer.concat([payloadDef, payloadLength, output]);
   } else {
     // Otherwise it is a string or number:
-    if (typeof input === 'number'){
+    if (typeof input === 'number') {
       input = input.toString(16);
       if (input.length % 2)
         input = '0' + input;
       return Buffer.from(input, 'hex');
     }
-
     let output = Buffer.from(input);
 
     if (output.length === 1 && output[0] < 128) {
@@ -36,8 +40,11 @@ function encode(input: Array | string | number | null): Buffer {
       ]);
     }
 
-    let payloadLength = Buffer.from((output.length).toString(16), 'hex');
-    let payloadDef    = Buffer.from((183 + payloadLength.length).toString(16), 'hex');
+    let outputLength  = (output.length).toString(16);
+    if (outputLength.length % 2)
+      outputLength = '0' + outputLength;
+    let payloadLength = Buffer.from(outputLength, 'hex');
+    let payloadDef    = Buffer.from((183 + (payloadLength.length)).toString(16), 'hex');
 
     return Buffer.concat([payloadDef, payloadLength, output]);
   }
@@ -64,6 +71,7 @@ function decode(input: Buffer, r: bool = false) {
     // letter or number larger than 0x80 (128)
     if (input[0] < 183) {
       let payloadLength = input[0] - 128;
+
       decoded.push(input.slice(1, 1 + payloadLength));
       input = bufferUnshift(input, 1 + payloadLength);
       continue;
@@ -123,9 +131,13 @@ function getPayloadSize(length: number, payloadLengthBuffer: Buffer): number {
   if (length === 1)
     return payloadLengthBuffer.readUInt8(0);
   if (length === 2)
-    return payloadLengthBuffer.readUInt16(0);
-  if (length === 3)
-    return payloadLengthBuffer.readUInt32(0);
+    return payloadLengthBuffer.readUInt16BE(0);
+  if (length === 3) {
+    payloadLengthBuffer = Buffer.concat([new Buffer([0x00]), payloadLengthBuffer]);
+    return payloadLengthBuffer.readUInt32BE(0);
+  }
+
+  return payloadLengthBuffer.readUInt32BE(0);
 }
 
 module.exports = { encode, decode };
