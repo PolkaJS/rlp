@@ -1,11 +1,11 @@
-# rlp-zion-coin [![travis][travis-image]][travis-url] [![npm][npm-image]][npm-url] [![downloads][downloads-image]][downloads-url] [![Greenkeeper badge](https://badges.greenkeeper.io/zion-coin/rlp-zion-coin.svg)](https://greenkeeper.io/)
+# @polkajs/rlp [![travis][travis-image]][travis-url] [![npm][npm-image]][npm-url] [![downloads][downloads-image]][downloads-url] [![Greenkeeper badge](https://badges.greenkeeper.io/PolkaJS/rlp.svg)](https://greenkeeper.io/)
 
-[travis-image]: https://travis-ci.org/zion-coin/rlp-zion-coin.svg?branch=master
-[travis-url]: https://travis-ci.org/zion-coin/rlp-zion-coin
-[npm-image]: https://img.shields.io/npm/v/rlp-zion-coin.svg
-[npm-url]: https://npmjs.org/package/rlp-zion-coin
-[downloads-image]: https://img.shields.io/npm/dm/rlp-zion-coin.svg
-[downloads-url]: https://npmjs.org/package/rlp-zion-coin
+[travis-image]: https://travis-ci.org/PolkaJS/rlp.svg?branch=master
+[travis-url]: https://travis-ci.org/PolkaJS/rlp
+[npm-image]: https://img.shields.io/npm/v/@polkajs/rlp.svg
+[npm-url]: https://npmjs.org/package/@polkajs/rlp
+[downloads-image]: https://img.shields.io/npm/dm/@polkajs/rlp.svg
+[downloads-url]: https://npmjs.org/package/@polkajs/rlp
 
 ## About
 
@@ -17,10 +17,13 @@ The purpose of RLP (Recursive Length Prefix) is to encode arbitrarily nested arr
 
 ## API
 
-`npm install --save rlp-zion-coin`
+### Install
 
-## Require Module
-`const RLP = require('rlp-zion-coin');`
+`npm install --save @polkajs/rlp`
+
+### Require Module
+
+`const RLP = require('@polkajs/rlp');`
 
 ### ENCODE
 
