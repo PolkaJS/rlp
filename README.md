@@ -51,6 +51,20 @@ console.log(str);
 
 ```
 
+### DECODE_STR
+
+If you are only working with arrays and strings, this
+method has better decoding
+
+``` javascript
+const arr = ['a', 'abc', 5];
+
+const encode = RLP.encode(arr);
+const decode_str = RLP.decode_str(encode);
+console.log(decode_str);
+// ['a', 'abc', '\x05']
+```
+
 
 ### Visual QUE:
 

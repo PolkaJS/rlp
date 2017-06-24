@@ -79,3 +79,27 @@ test('large array of string', function (t) {
     t.equal(encode.toString(), Buffer.from([0xf8, 0x3e, 0xb8, 0x3c, 0x61, 0x62, 0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 0x69, 0x6a, 0x61, 0x62, 0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 0x69, 0x6a, 0x61, 0x62, 0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 0x69, 0x6a, 0x61, 0x62, 0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 0x69, 0x6a, 0x61, 0x62, 0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 0x69, 0x6a, 0x61, 0x62, 0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 0x69, 0x6a]).toString(), 'large array of string encode');
     t.equal(decode[0].toString(), largeStringArray[0].toString(), 'large array of string decode');
 });
+
+test('string (decode_str)', function (t) {
+    t.plan(2);
+    const string = 'abc';
+
+    const encode = RLP.encode(string);
+    const decode_str = RLP.decode_str(encode);
+
+    t.equal(encode.toString(), Buffer.from([0x83, 0x61, 0x62, 0x63]).toString(), 'string encode');
+    t.equal(decode_str, string, 'string decode_str');
+});
+
+test('array of char, string, and number (decode_str)', function (t) {
+    t.plan(4);
+    const aocsn = ['a', 'abc', 5];
+
+    const encode = RLP.encode(aocsn);
+    const decode_str = RLP.decode_str(encode);
+
+    t.equal(encode.toString(), Buffer.from([0xc6, 0x61, 0x83, 0x61, 0x62, 0x63, 0x05]).toString(), 'array of char, string, and number encode');
+    t.equal(decode_str[0], aocsn[0], 'array of char, string, and number encode - char');
+    t.equal(decode_str[1], aocsn[1], 'array of char, string, and number encode - string');
+    t.equal(decode_str[2], '\x05', 'array of char, string, and number encode - number');
+});
