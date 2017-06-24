@@ -52,6 +52,42 @@ console.log(str);
 ```
 
 
+### Visual QUE:
+
+``` javascript
+First byte of an encoded item
+
+    x: single byte, itself
+    |
+    |
+0x7f == 127
+
+0x80 == 128
+    |
+    x: [0, 55] byte long string, x-0x80 == length
+    |
+0xb7 == 183
+
+0xb8 == 184
+    |
+    x: [55, ] long string, x-0xf8 == length of the length
+    |
+0xbf == 191
+
+0xc0 == 192
+    |
+    x: [0, 55] byte long list, x-0xc0 == length
+    |
+0xf7 == 247
+
+0xf8 == 248
+    |
+    x: [55, ] long list, x-0xf8 == length of the length
+    |
+0xff == 255
+```
+
+
 
 ISC License (ISC)
 Copyright 2017 <Zion Coin>
