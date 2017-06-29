@@ -4,7 +4,6 @@ function encode(input: Array<any> | string | number | null): Buffer {
   if (!input)
     return Buffer.from([0x80]);
 
-
   if (Array.isArray(input)) {
     let output = Buffer.concat( input.map(encode) );
 
