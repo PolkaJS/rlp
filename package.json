@@ -21,7 +21,7 @@
     "babel-eslint": "^7.2.3",
     "babel-preset-flow": "^6.23.0",
     "eslint": "^4.0.0",
-    "flow-bin": "^0.51.0",
+    "flow-bin": "^0.52.0",
     "random-words": "0.0.1",
     "rlp": "^2.0.0",
     "sha3": "^1.2.0",
