@@ -103,3 +103,13 @@ test('array of char, string, and number (decode_str)', function (t) {
     t.equal(decode_str[1], aocsn[1], 'array of char, string, and number encode - string');
     t.equal(decode_str[2], '\x05', 'array of char, string, and number encode - number');
 });
+
+test('input of 0', function (t) {
+    t.plan(1);
+    const buffer = Buffer.from([0x00]);
+
+    const encode = RLP.encode(buffer);
+    const decode = RLP.decode(encode);
+
+    t.equal(Buffer.from([0x00]).toString(), decode.toString(), '0 or <Buffer 00> must be returned with a value');
+});

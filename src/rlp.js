@@ -1,6 +1,6 @@
 // @flow
 
-function encode(input: Array<any> | string | number | null): Buffer {
+function encode(input: Buffer | Array<any> | string | number | null): Buffer {
   if (!input)
     return Buffer.from([0x80]);
 
@@ -52,7 +52,7 @@ function encode(input: Array<any> | string | number | null): Buffer {
 function decode(input: Buffer, r: bool = false) {
   let decoded = [];
 
-  while (input[0]) {
+  while (input.length) {
     // null address; (equal to 0x80)
     if (input[0] === 128) {
       decoded.push(new Buffer([]));
