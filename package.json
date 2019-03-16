@@ -20,7 +20,7 @@
     "babel-cli": "^6.24.1",
     "babel-eslint": "^8.0.0",
     "babel-preset-flow": "^6.23.0",
-    "eslint": "^4.0.0",
+    "eslint": "^5.15.2",
     "flow-bin": "^0.54.0",
     "random-words": "0.0.1",
     "rlp": "^2.0.0",
